@@ -53,22 +53,30 @@ function saveAndRender() {
 }
 
 function renderHabits() {
-  list.innerHTML = "";
-
-  emptyState.style.display = habits.length ? "none" : "block";
-
-  habits.forEach(habit => {
-    const li = document.createElement("li");
-    li.className = habit.completed ? "completed" : "";
-
-    li.innerHTML = `
-      <span onclick="toggleHabit(${habit.id})">${habit.text}</span>
-      <button class="delete" onclick="deleteHabit(${habit.id})">✕</button>
-    `;
-
-    list.appendChild(li);
-  });
-}
+    list.innerHTML = "";
+  
+    emptyState.style.display = habits.length ? "none" : "block";
+  
+    habits.forEach(habit => {
+      const li = document.createElement("li");
+      li.className = habit.completed ? "completed" : "";
+  
+      li.innerHTML = `
+        <label class="habit-item">
+          <input 
+            type="checkbox" 
+            ${habit.completed ? "checked" : ""} 
+            onchange="toggleHabit(${habit.id})"
+          />
+          <span>${habit.text}</span>
+        </label>
+  
+        <button class="delete" onclick="deleteHabit(${habit.id})">✕</button>
+      `;
+  
+      list.appendChild(li);
+    });
+  }
 
 window.toggleHabit = toggleHabit;
 window.deleteHabit = deleteHabit;
