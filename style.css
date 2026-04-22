@@ -1,0 +1,98 @@
+:root {
+    --bg: #f7f8fc;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --accent: #4A90E2;
+    --border: #e5e7eb;
+    --done: #eaf2ff;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, sans-serif;
+  }
+  
+  body {
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  
+  button {
+    padding: 0.75rem 1rem;
+    border: none;
+    background: var(--accent);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  li {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 0.9rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  li.completed {
+    background: var(--done);
+    text-decoration: line-through;
+    color: var(--muted);
+  }
+  
+  button.delete {
+    background: transparent;
+    color: red;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    margin-top: 2rem;
+  }
