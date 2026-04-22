@@ -1,114 +1,188 @@
+/* ── Design tokens ────────────────────────────────────────────────────────── */
 :root {
-    --bg: #f7f8fc;
-    --card: #ffffff;
-    --text: #1f2937;
-    --muted: #6b7280;
-    --accent: #4A90E2;
-    --border: #e5e7eb;
-    --done: #eaf2ff;
+  --bg:      #f4ede0;   /* page background */
+  --card:    #fdf8f0;   /* habit card background */
+  --text:    #2d1f0e;   /* primary text */
+  --muted:   #8a7463;   /* secondary / placeholder text */
+  --accent:  #b87333;   /* copper — buttons, focus rings */
+  --border:  #ddd0bb;   /* card borders */
+  --done-bg: #ede4d3;   /* completed habit tint */
+  --danger:  #b94a2c;   /* terracotta delete button */
+  --radius:  12px;
+}
+
+/* ── Reset ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+  min-height: 100vh;
+}
+
+/* ── Layout container ─────────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 520px;
+}
+
+/* ── Heading ──────────────────────────────────────────────────────────────── */
+h1 {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+/* ── Input row ────────────────────────────────────────────────────────────── */
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--card);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input-group input:focus {
+  border-color: var(--accent);
+}
+
+.input-group button {
+  padding: 0.75rem 1.25rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.input-group button:hover {
+  opacity: 0.88;
+}
+
+/* ── Validation error ─────────────────────────────────────────────────────── */
+.error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  min-height: 1.2em;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Habit list ───────────────────────────────────────────────────────────── */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── Individual habit card ────────────────────────────────────────────────── */
+li {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+/* Completed state — tinted background */
+li.completed {
+  background: var(--done-bg);
+  border-color: #c7ddf8;
+}
+
+/* ── Checkbox + label row ─────────────────────────────────────────────────── */
+.habit-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0; /* allows text truncation if needed */
+}
+
+.habit-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.habit-label span {
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+/* Strikethrough on completed habit text */
+li.completed .habit-label span {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* ── Delete button ────────────────────────────────────────────────────────── */
+.btn-delete {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+
+.btn-delete:hover {
+  color: var(--danger);
+  background: #fee2e2;
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.empty {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 2.5rem;
+  font-size: 0.95rem;
+}
+
+/* ── Mobile tweaks (screens narrower than 400px) ──────────────────────────── */
+@media (max-width: 400px) {
+  h1 { font-size: 1.3rem; }
+
+  .input-group input { font-size: 0.95rem; }
+
+  .input-group button {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.95rem;
   }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: system-ui, sans-serif;
-  }
-  
-  body {
-    background: var(--bg);
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-    padding: 2rem 1rem;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  .input-group {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  input {
-    flex: 1;
-    padding: 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-  }
-  
-  button {
-    padding: 0.75rem 1rem;
-    border: none;
-    background: var(--accent);
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .error {
-    color: red;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  li {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 0.9rem;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  li.completed {
-    background: var(--done);
-    text-decoration: line-through;
-    color: var(--muted);
-  }
-  
-  button.delete {
-    background: transparent;
-    color: red;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .empty {
-    text-align: center;
-    color: var(--muted);
-    margin-top: 2rem;
-  }
-  .habit-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-  }
-  
-  li.completed span {
-    text-decoration: line-through;
-    color: #6b7280;
-  }
+}

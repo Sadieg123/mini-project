@@ -2,26 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Habit Tracker</title>
-  <link rel="stylesheet" href="style.css"/>
+  <!-- Makes the layout scale correctly on mobile screens -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Habit Tracker</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
   <div class="container">
+
     <h1>Daily Habit Tracker</h1>
 
+    <!-- Input row: text field + Add button -->
     <div class="input-group">
-      <input type="text" id="habitInput" placeholder="Add a new habit..." />
+      <input
+        type="text"
+        id="habitInput"
+        placeholder="Add a new habit..."
+        aria-label="New habit"
+        maxlength="100"
+      />
       <button id="addBtn">Add</button>
     </div>
 
-    <p class="error" id="error"></p>
+    <!-- Validation message shown when input is empty -->
+    <p class="error" id="error" role="alert"></p>
 
+    <!-- Habit list — populated by JavaScript -->
     <ul id="habitList"></ul>
 
+    <!-- Shown when there are no habits -->
     <p class="empty" id="emptyState">No habits yet — add one above</p>
+
   </div>
 
   <script src="script.js"></script>
