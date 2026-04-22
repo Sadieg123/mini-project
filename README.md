@@ -5,7 +5,7 @@ A lightweight habit tracking web application built using HTML, CSS, and JavaScri
 ---
 
 ## Live Demo
-https://sadieg123.github.io/Portfolio-Reflection/
+https://sadieg123.github.io/mini-project/
 
 ---
 
